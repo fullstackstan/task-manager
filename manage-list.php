@@ -21,7 +21,12 @@
         <?php
         
         // check if session set
-        if(isset($_SESSION['add']))
+        if(isset($_SESSION['add'])){
+            // display message 
+            echo $_SESSION['add'];
+            // then  remove message
+            unset($_SESSION['add']);
+        }
 
         ?>
     </p>

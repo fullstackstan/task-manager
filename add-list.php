@@ -25,7 +25,7 @@
             // display session message
             echo $_SESSION['add_fail'];
             // remove message after display
-            unset($_SESSION('add_fail'));
+            unset($_SESSION['add_fail']);
         }
         ?>
     </p>
@@ -95,7 +95,7 @@ if(isset($_POST['submit']))
         // echo "Data inserted successfully";
 
         // create session var to display message
-        $_SESSION('add') = "List added successfully";
+        $_SESSION['add'] = "List added successfully";
 
         // Redirect to Manage List
         header('location:'.SITEURL.'manage-list.php');
@@ -106,7 +106,7 @@ if(isset($_POST['submit']))
 
 
         // create session var to display message
-        $_SESSION('add_fail') = "List Add Failed";
+        $_SESSION['add_fail'] = "List Add Failed";
 
         // redirect to add list
         header('location:'.SITEURL.'add-list.php')
