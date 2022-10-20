@@ -38,7 +38,7 @@
         <table>
             <tr>
                 <td>List Name</td>
-                <td><input type="text" name="list_name" placeholder="Type list name here"/></td>
+                <td><input type="text" name="list_name" placeholder="Type list name here" required="required"/></td>
             </tr>
             <tr>
                 <td>List Description</td>
@@ -109,7 +109,7 @@ if(isset($_POST['submit']))
         $_SESSION['add_fail'] = "List Add Failed";
 
         // redirect to add list
-        header('location:'.SITEURL.'add-list.php')
+        header('location:'.SITEURL.'add-list.php');
     }
 }
 
