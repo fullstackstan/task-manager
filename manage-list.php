@@ -17,6 +17,15 @@
 
     <h3>Manage Lists Page</h3>
 
+    <p>
+        <?php
+        
+        // check if session set
+        if(isset($_SESSION['add']))
+
+        ?>
+    </p>
+
     <!-- Table for lists -->
     <div class="all-lists">
 
