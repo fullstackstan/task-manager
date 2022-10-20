@@ -17,10 +17,24 @@
 
     <h3>Manage Lists Page</h3>
 
+    <p>
+        <?php
+        
+        // check if session set
+        if(isset($_SESSION['add'])){
+            // display message 
+            echo $_SESSION['add'];
+            // then  remove message
+            unset($_SESSION['add']);
+        }
+
+        ?>
+    </p>
+
     <!-- Table for lists -->
     <div class="all-lists">
 
-        <a href="<?php echo SITEURL; ?>">Add List</a>
+        <a href="<?php echo SITEURL; ?>add-list.php">Add List</a>
 
         <table>
             <tr>
