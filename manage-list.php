@@ -20,7 +20,7 @@
     <!-- Table for lists -->
     <div class="all-lists">
 
-        <a href="<?php echo SITEURL; ?>">Add List</a>
+        <a href="<?php echo SITEURL; ?>add-list.php">Add List</a>
 
         <table>
             <tr>

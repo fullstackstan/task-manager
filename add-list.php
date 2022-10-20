@@ -13,7 +13,7 @@
 <body>
     <h1>Task Manager</h1>
     <a href="<?php echo SITEURL; ?>">Home</a>
-    <a href="<?php echo SITEURL; ?>">Manage List</a>
+    <a href="<?php echo SITEURL; ?>manage-list.php">Manage List</a>
 
     <h3>Add List Page</h3>
 
