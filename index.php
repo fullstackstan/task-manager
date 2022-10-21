@@ -26,9 +26,21 @@
     <!-- Menu End -->
 
     <!-- Tasks Start -->
+
+
+    <p>
+        <?php 
+            if(isset($_SESSION['add_task'])){
+                echo $_SESSION['add_task'];
+                unset( $_SESSION['add_task']);
+            }
+        ?>
+    </p>
+
+
     <div class="all-tasks">
 
-        <a href="#">Add Task</a>
+        <a href="<?php SITEURL; ?>add-task.php">Add Task</a>
 
         <table>
             <tr>
@@ -38,18 +50,69 @@
                 <th>Deadline</th>
                 <th>Actions</th>
             </tr>
+            
+            <?php 
+            
+                //connect db
+                $conn = mysqli_connect(LOCALHOST,DB_USERNAME,DB_PASSWORD) or die(mysqli_error());
 
-            <tr>
-                <td>1.</td>
-                <td>Design Website</td>
-                <td>Medium</td>
-                <td>10/19/2022</td>
-                <td>
-                    <a href="#">Update</a>
+                //select db
+                $db_select = mysqli_select_db($conn,DB_NAME);
 
-                    <a href="#">Delete</a>
-                </td>
-            </tr>
+                //create sql query to get data from db
+                $sql = "SELECT * FROM tbl_tasks";
+
+                //execute query
+                $res = mysqli_query($conn, $sql);
+
+                //check if query successful.
+                if($res==true){
+                    //display the tasks from db
+                    //count the tasks on db first
+                    $count_rows = mysqli_num_rows($res);
+
+                    //create sn hack
+                    $sn=1;
+
+                    //check if db empty
+                    if($count_rows>0){
+                        //there is data is db
+                        while($row=mysqli_fetch_assoc($res)){
+                            $task_id =$row['task_id'];
+                            $task_name =$row['task_name'];
+                            $priority =$row['priority'];
+                            $deadline =$row['deadline'];
+                            ?>
+
+                            <tr>
+                                <td><?php echo $sn++; ?>.</td>
+                                <td><?php echo $task_name; ?></td>
+                                <td><?php echo $priority; ?></td>
+                                <td><?php echo $deadline; ?></td>
+                                <td>
+                                    <a href="#">Update</a>
+
+                                    <a href="#">Delete</a>
+                                </td>
+                            </tr>
+
+                            <?php
+                        }
+                    } else {
+                        //no data in db
+                        ?>
+                        <tr>
+                            <td colspan="5">No Task Added Yet.</td>
+                        </tr>
+                        <?php
+                    }
+
+                }
+
+            ?>
+
+
+            
         </table>
 
     </div>
