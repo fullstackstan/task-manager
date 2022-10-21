@@ -17,9 +17,38 @@
     <div class="menu">
 <a href="<?php echo SITEURL; ?>">Home</a>
 
-<a href="#">Todo</a>
-<a href="#">In Progress</a>
-<a href="#">Done</a>
+<?php 
+
+//displaying list from db in our menu
+
+//conncet db
+$conn2 = mysqli_connect(LOCALHOST,DB_USERNAME,DB_PASSWORD) or die(mysqli_error());
+
+//select db
+$db_select2 = mysqli_select_db($conn2,DB_NAME) or die(mysqli_error());
+
+//query to get list from db
+$sql2 = "SELECT * FROM tbl_lists";
+
+//execute query
+$res2= mysqli_query($conn2, $sql2);
+
+//check if query successful
+if($res2==true){
+    //diplay the lists in menu
+    while($row2=mysqli_fetch_assoc($res2)){
+        $list_id = $row2['list_id'];
+        $list_name = $row2['list_name'];
+        ?>
+
+        <a href="<?php echo SITEURL; ?>list-task.php?list_id=<?php echo $list_id; ?>"><?php echo $list_name; ?></a>
+
+        <?php
+    }
+}
+
+?>
+
 
 <a href="<?php echo SITEURL; ?>manage-list.php">Manage Lists</a>
 </div>
